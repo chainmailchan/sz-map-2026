@@ -1,5 +1,5 @@
 // Shenzhen map — Leaflet on Amap tiles. All coordinates are GCJ-02 (Amap's system).
-const LAST_UPDATED = "20 Nov 2026";
+const LAST_UPDATED = "20 Nov 2026 (app links)";
 
 const TILES = {
   en: { url: "https://wprd0{s}.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=en&size=1&scl=1&style=7", label: "Labels: English" },
@@ -50,14 +50,41 @@ function distanceM(a, b) {
 function fmtDist(m) { return m < 1000 ? `${Math.round(m / 10) * 10} m` : `${(m / 1000).toFixed(1)} km`; }
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-// ---- Amap links (official URI API, coordinate=gaode means GCJ-02) ----
+// ---- Amap links ----
+// iPhone/Android: app URL schemes open the Amap app directly. dev=0 = coordinates are already GCJ-02.
+// Elsewhere (or as a fallback): uri.amap.com web links.
+const IS_IOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const IS_ANDROID = /Android/.test(navigator.userAgent);
+const APP = "sz-map";
+const nm = (p) => encodeURIComponent(p.name_zh || p.name);
+
+function amapWebMarker(p) { return `https://uri.amap.com/marker?position=${p.lng},${p.lat}&name=${nm(p)}&src=${APP}&coordinate=gaode&callnative=1`; }
+function amapWebDir(p) { return `https://uri.amap.com/navigation?to=${p.lng},${p.lat},${nm(p)}&mode=bus&policy=1&src=${APP}&coordinate=gaode&callnative=1`; }
+
 function amapMarkerUrl(p) {
-  const name = encodeURIComponent(p.name_zh || p.name);
-  return `https://uri.amap.com/marker?position=${p.lng},${p.lat}&name=${name}&src=sz-map&coordinate=gaode&callnative=1`;
+  if (IS_IOS) return `iosamap://viewMap?sourceApplication=${APP}&poiname=${nm(p)}&lat=${p.lat}&lon=${p.lng}&dev=0`;
+  if (IS_ANDROID) return `androidamap://viewMap?sourceApplication=${APP}&poiname=${nm(p)}&lat=${p.lat}&lon=${p.lng}&dev=0`;
+  return amapWebMarker(p);
 }
 function amapDirUrl(p) {
-  const name = encodeURIComponent(p.name_zh || p.name);
-  return `https://uri.amap.com/navigation?to=${p.lng},${p.lat},${name}&mode=bus&policy=1&src=sz-map&coordinate=gaode&callnative=1`;
+  // t=1 = public transport
+  if (IS_IOS) return `iosamap://path?sourceApplication=${APP}&dlat=${p.lat}&dlon=${p.lng}&dname=${nm(p)}&dev=0&t=1`;
+  if (IS_ANDROID) return `amapuri://route/plan/?sourceApplication=${APP}&dlat=${p.lat}&dlon=${p.lng}&dname=${nm(p)}&dev=0&t=1`;
+  return amapWebDir(p);
+}
+
+// If the app didn't take over within ~1.5 s, offer the website instead.
+function watchAppOpen(webUrl) {
+  if (!IS_IOS && !IS_ANDROID) return;
+  const fb = $("s-fallback");
+  fb.hidden = true;
+  let left = false;
+  const onHide = () => { if (document.hidden) left = true; };
+  document.addEventListener("visibilitychange", onHide);
+  setTimeout(() => {
+    document.removeEventListener("visibilitychange", onHide);
+    if (!left) { $("s-fallback-link").href = webUrl; fb.hidden = false; }
+  }, 1500);
 }
 
 // ---- State ----
@@ -146,8 +173,13 @@ function openSheet(id) {
   $("s-meta").textContent = bits.join(" · ");
   $("s-addr").textContent = p.address_zh || "";
   $("s-note").textContent = p.note || "";
-  $("s-amap").href = amapMarkerUrl(p);
-  $("s-dir").href = amapDirUrl(p);
+  const amap = $("s-amap"), dir = $("s-dir");
+  amap.href = amapMarkerUrl(p); dir.href = amapDirUrl(p);
+  const appMode = IS_IOS || IS_ANDROID;
+  [amap, dir].forEach((a) => { if (appMode) a.removeAttribute("target"); else a.target = "_blank"; });
+  amap.onclick = () => watchAppOpen(amapWebMarker(p));
+  dir.onclick = () => watchAppOpen(amapWebDir(p));
+  $("s-fallback").hidden = true;
   const tel = $("s-tel");
   if (p.phone) { tel.hidden = false; tel.href = `tel:${p.phone.split(/[;,]/)[0].replace(/[^\d+]/g, "")}`; tel.textContent = `Call ${p.phone.split(/[;,]/)[0]}`; }
   else tel.hidden = true;
