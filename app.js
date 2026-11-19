@@ -126,7 +126,7 @@ function fitAll() {
   if (me) pts.push(me);
   if (!pts.length) return;
   if (pts.length === 1) map.setView(pts[0], 16);
-  else map.fitBounds(pts, { paddingTopLeft: [40, 40], paddingBottomRight: [170, 110], maxZoom: 16 });
+  else map.fitBounds(pts, { paddingTopLeft: [24, 24], paddingBottomRight: [100, 100], maxZoom: 16 });
 }
 
 function openSheet(id) {
