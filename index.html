@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="SZ map">
+  <meta name="theme-color" content="#ffffff">
+  <title>Shenzhen map</title>
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="title-row">
+      <h1>Shenzhen map</h1>
+      <button id="btn-labels" class="btn small" type="button" aria-pressed="false">Labels: English</button>
+    </div>
+    <nav id="filters" class="filters" aria-label="Filter places"></nav>
+  </header>
+
+  <div id="map" aria-label="Map"></div>
+
+  <div id="banner" class="banner" hidden></div>
+
+  <div class="controls">
+    <button id="btn-locate" class="btn" type="button">Show my location</button>
+    <button id="btn-fit" class="btn" type="button">Show all pins</button>
+    <button id="btn-list" class="btn" type="button">List</button>
+  </div>
+
+  <section id="sheet" class="sheet" hidden aria-live="polite">
+    <div class="sheet-head">
+      <div>
+        <h2 id="s-name"></h2>
+        <p id="s-zh" class="zh"></p>
+      </div>
+      <button id="s-close" class="btn small" type="button">Close</button>
+    </div>
+    <p id="s-meta" class="meta"></p>
+    <p id="s-addr" class="zh addr"></p>
+    <p id="s-note" class="note"></p>
+    <div class="sheet-actions">
+      <a id="s-amap" class="btn primary" target="_blank" rel="noopener">Open in Amap</a>
+      <a id="s-dir" class="btn primary" target="_blank" rel="noopener">Directions in Amap</a>
+      <button id="s-copy" class="btn" type="button">Copy Chinese address</button>
+      <a id="s-tel" class="btn" hidden>Call</a>
+    </div>
+    <p id="s-copied" class="copied" hidden></p>
+  </section>
+
+  <section id="list" class="list" hidden>
+    <div class="sheet-head">
+      <h2>Places</h2>
+      <button id="l-close" class="btn small" type="button">Close</button>
+    </div>
+    <ol id="l-items"></ol>
+  </section>
+
+  <footer class="foot">
+    <span id="updated"></span> · Map © AutoNavi 高德地图 · <a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>
+  </footer>
+
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

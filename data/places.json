@@ -1,0 +1,46 @@
+{
+  "coord_system": "GCJ-02 (Amap). Do not paste GPS/WGS-84 coordinates here without converting.",
+  "categories": [
+    { "id": "hotel", "label": "Hotel" },
+    { "id": "sight", "label": "Sights" },
+    { "id": "food", "label": "Food" },
+    { "id": "shop", "label": "Shopping" }
+  ],
+  "places": [
+    {
+      "id": "hotel",
+      "name": "Our hotel",
+      "name_zh": "深圳方格雅仕酒店(南山深圳湾口岸店)",
+      "category": "hotel",
+      "address_zh": "粤海街道后海社区后海办公楼",
+      "phone": "0755-86618898",
+      "lat": 22.510475,
+      "lng": 113.932025,
+      "amap_id": "B0H12Z9050",
+      "source": "Amap share link"
+    },
+    {
+      "id": "nantou-ancient-city",
+      "name": "Nantou Ancient City",
+      "name_zh": "南头古城",
+      "category": "sight",
+      "address_zh": "南头街道南头城社区深南大道12024号(南头古城地铁站C口)",
+      "lat": 22.543019,
+      "lng": 113.921429,
+      "amap_id": "B02F37U89L",
+      "source": "Amap share link"
+    },
+    {
+      "id": "oct-loft",
+      "name": "OCT-LOFT",
+      "name_zh": "华侨城创意文化园OCT-LOFT",
+      "category": "sight",
+      "address_zh": "文昌南街1号华侨城创意文化园",
+      "phone": "0755-86096160",
+      "lat": 22.539225,
+      "lng": 113.993075,
+      "amap_id": "B0FFG8UY0M",
+      "source": "Amap share link"
+    }
+  ]
+}
