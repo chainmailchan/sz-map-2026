@@ -1,5 +1,6 @@
 // Shenzhen map — Leaflet on Amap tiles. All coordinates are GCJ-02 (Amap's system).
-const LAST_UPDATED = "20 Nov 2026 (app links)";
+const LAST_UPDATED = "20 Nov 2026";
+const VERSION = "v4";
 
 const TILES = {
   en: { url: "https://wprd0{s}.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=en&size=1&scl=1&style=7", label: "Labels: English" },
@@ -262,7 +263,8 @@ function toggleLocate() {
 }
 
 async function init() {
-  $("updated").textContent = `Last updated ${LAST_UPDATED}`;
+  const mode = IS_IOS ? "iPhone app links" : IS_ANDROID ? "Android app links" : "website links";
+  $("updated").textContent = `${VERSION} · ${mode} · Updated ${LAST_UPDATED}`;
   map = L.map("map", { zoomControl: false, attributionControl: false, tap: true }).setView([22.53, 113.95], 13);
   setTiles();
   try {
