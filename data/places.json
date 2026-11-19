@@ -1,10 +1,22 @@
 {
   "coord_system": "GCJ-02 (Amap). Do not paste GPS/WGS-84 coordinates here without converting.",
   "categories": [
-    { "id": "hotel", "label": "Hotel" },
-    { "id": "sight", "label": "Sights" },
-    { "id": "food", "label": "Food" },
-    { "id": "shop", "label": "Shopping" }
+    {
+      "id": "hotel",
+      "label": "Hotel"
+    },
+    {
+      "id": "sight",
+      "label": "Sights"
+    },
+    {
+      "id": "food",
+      "label": "Food"
+    },
+    {
+      "id": "shop",
+      "label": "Shopping"
+    }
   ],
   "places": [
     {
@@ -41,6 +53,17 @@
       "lng": 113.993075,
       "amap_id": "B0FFG8UY0M",
       "source": "Amap share link"
+    },
+    {
+      "id": "shenzhen-bay-mixc",
+      "name": "Shenzhen Bay MixC",
+      "name_zh": "深圳湾万象城",
+      "category": "shop",
+      "address_zh": "深圳市南山区粤海街道海珠社区科苑南路2888号",
+      "note": "Hours: Sun–Thu 10:00–22:00, Fri–Sat 10:00–22:30. Phase 2 opened Sept 2025. Nearest metro: Houhai (后海).",
+      "lat": 22.5165155,
+      "lng": 113.9461757,
+      "source": "Coordinates: Google place search, checked against Amap map. Address and hours: bendibao.com"
     }
   ]
 }
