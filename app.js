@@ -126,7 +126,7 @@ function fitAll() {
   if (me) pts.push(me);
   if (!pts.length) return;
   if (pts.length === 1) map.setView(pts[0], 16);
-  else map.fitBounds(pts, { padding: [60, 60], maxZoom: 16 });
+  else map.fitBounds(pts, { paddingTopLeft: [40, 40], paddingBottomRight: [170, 110], maxZoom: 16 });
 }
 
 function openSheet(id) {
@@ -154,7 +154,10 @@ function openSheet(id) {
   $("s-copy").hidden = !p.address_zh;
   $("s-copied").hidden = true;
   $("sheet").hidden = false;
-  map.panTo([p.lat, p.lng]);
+  // keep the pin visible above the sheet
+  const y = map.getSize().y;
+  const pt = map.latLngToContainerPoint([p.lat, p.lng]);
+  if (pt.y > y * 0.4) map.panBy([0, pt.y - y * 0.3]);
 }
 
 function closeSheet() {
@@ -199,7 +202,7 @@ function toggleLocate() {
   if (watchId !== null) {
     navigator.geolocation.clearWatch(watchId); watchId = null; me = null;
     if (meMarker) { map.removeLayer(meMarker); map.removeLayer(meCircle); meMarker = meCircle = null; }
-    btn.textContent = "Show my location";
+    btn.textContent = "My location";
     renderList();
     return;
   }
@@ -218,7 +221,7 @@ function toggleLocate() {
     if (!$("list").hidden) renderList();
   }, (err) => {
     watchId !== null && navigator.geolocation.clearWatch(watchId); watchId = null;
-    btn.textContent = "Show my location";
+    btn.textContent = "My location";
     showBanner(err.code === 1
       ? "Location is blocked. On iPhone: Settings → Privacy & Security → Location Services → Safari Websites → While Using. Then try again."
       : "Couldn't get your location. Try again in a moment.");

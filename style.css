@@ -93,7 +93,8 @@ h2 { font-size: 20px; margin: 0; }
 .addr { margin-top: 8px; }
 .note { margin: 8px 0 0; }
 .note:empty, .meta:empty, .addr:empty, .zh:empty { display: none; }
-.sheet-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+.sheet-actions { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin-top: 14px; }
+.sheet-actions .btn { width: 100%; white-space: normal; text-align: center; }
 .copied { margin: 10px 0 0; color: var(--blue); font-weight: 600; }
 .copybox { width: 100%; margin-top: 8px; font: inherit; font-size: 18px; padding: 8px; }
 
