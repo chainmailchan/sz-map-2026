@@ -207,6 +207,29 @@
       "note": "Position from Google's listing for the shop at 粤琴一路23-38 (listed under its old name, 天虹微喔, a chain Lawson bought). Not checked on Amap's map.",
       "amap_short": "https://surl.amap.com/2kb1gzGOVgtf",
       "source": "Chan's Amap share (name, address); position: Google place search, same unit number"
+    },
+    {
+      "id": "meiyijia-yueqin",
+      "name": "Meiyijia · 粤琴一路",
+      "name_zh": "美宜佳",
+      "category": "store",
+      "address_zh": "粤琴一路23-24",
+      "lat": 22.51197,
+      "lng": 113.93338,
+      "note": "Listed on Google as 'Meiyijia Yue 15531'. Not checked on Amap's map.",
+      "source": "Google place search"
+    },
+    {
+      "id": "xiesanbao-mixc",
+      "name": "蟹叁寶 Xiesanbao · MixC",
+      "name_zh": "蟹叁寶 (深圳湾万象城店)",
+      "category": "food",
+      "address": "Keyuan South Rd No. 1205 (Houhai station exit L, about 330 m walk)",
+      "lat": 22.5165155,
+      "lng": 113.9461757,
+      "note": "APPROXIMATE: pin is on the MixC mall pin, not the restaurant itself — exact spot not mapped yet. Jiangsu-Zhejiang; crab roe dishes. About ¥121 per person (Amap).",
+      "amap_short": "https://surl.amap.com/1rd34wG2I6Iq",
+      "source": "Chan's Amap share (name, price, address); position: MixC mall pin"
     }
   ]
 }
