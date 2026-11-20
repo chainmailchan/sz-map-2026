@@ -24,7 +24,7 @@ html, body {
   -webkit-text-size-adjust: 100%;
 }
 
-body { display: flex; flex-direction: column; overflow: hidden; }
+body { display: flex; flex-direction: column; overflow: hidden; touch-action: manipulation; }
 
 .top {
   padding: calc(8px + var(--safe-top)) 12px 8px;

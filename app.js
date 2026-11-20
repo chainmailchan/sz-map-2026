@@ -1,6 +1,6 @@
 // Shenzhen map — Leaflet on Amap tiles. All coordinates are GCJ-02 (Amap's system).
 const LAST_UPDATED = "20 Nov 2026";
-const VERSION = "v5";
+const VERSION = "v6";
 
 const TILES = {
   en: { url: "https://wprd0{s}.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=en&size=1&scl=1&style=7", label: "Labels: English" },
@@ -149,12 +149,12 @@ function renderMarkers() {
   });
 }
 
-function fitAll() {
+function fitAll(animate = true) {
   const pts = visiblePlaces().map((p) => [p.lat, p.lng]);
-  if (me) pts.push(me);
+  if (me && nearTrip(me)) pts.push(me);
   if (!pts.length) return;
-  if (pts.length === 1) map.setView(pts[0], 16);
-  else map.fitBounds(pts, { paddingTopLeft: [24, 24], paddingBottomRight: [100, 100], maxZoom: 16 });
+  if (pts.length === 1) map.setView(pts[0], 16, { animate });
+  else map.fitBounds(pts, { paddingTopLeft: [24, 24], paddingBottomRight: [100, 100], maxZoom: 16, animate });
 }
 
 function openSheet(id) {
@@ -230,17 +230,25 @@ function renderList() {
 function openList() { closeSheet(); renderList(); $("list").hidden = false; }
 function closeList() { $("list").hidden = true; }
 
-function toggleLocate() {
+// Is a point close enough to the trip area that the map should move to it?
+function nearTrip(pt) {
+  const h = data && data.places.find((x) => x.id === HOTEL_ID);
+  return !h || distanceM(pt, [h.lat, h.lng]) < 50000;
+}
+
+function toggleLocate(auto = false) {
   const btn = $("btn-locate");
   if (watchId !== null) {
     navigator.geolocation.clearWatch(watchId); watchId = null; me = null;
     if (meMarker) { map.removeLayer(meMarker); map.removeLayer(meCircle); meMarker = meCircle = null; }
     btn.textContent = "My location";
+    store.set("sz-loc", "off");
     renderList();
     return;
   }
   if (!("geolocation" in navigator)) { showBanner("This browser can't share your location."); return; }
   btn.textContent = "Finding you…";
+  store.set("sz-loc", "on");
   let first = true;
   watchId = navigator.geolocation.watchPosition((pos) => {
     me = wgsToGcj(pos.coords.latitude, pos.coords.longitude);
@@ -250,7 +258,11 @@ function toggleLocate() {
       meMarker = L.marker(me, { icon: L.divIcon({ className: "", iconSize: [18, 18], html: '<div class="me-dot"></div>' }), interactive: false, zIndexOffset: 1000 }).addTo(map);
     } else { meMarker.setLatLng(me); meCircle.setLatLng(me).setRadius(acc); }
     btn.textContent = "Stop location";
-    if (first) { map.setView(me, Math.max(map.getZoom(), 15)); first = false; }
+    if (first) {
+      first = false;
+      // Opened automatically: only move the map if you're in the Shenzhen area.
+      if (!auto || nearTrip(me)) { map.stop(); map.setView(me, Math.max(map.getZoom(), 15), { animate: !auto }); }
+    }
     if (!$("list").hidden) renderList();
   }, (err) => {
     watchId !== null && navigator.geolocation.clearWatch(watchId); watchId = null;
@@ -262,10 +274,64 @@ function toggleLocate() {
   }, { enableHighAccuracy: true, maximumAge: 10000, timeout: 20000 });
 }
 
+// ---- Google-Maps-style one-finger zoom ----
+// Double-tap: zoom in one step. Double-tap and hold, then drag down to zoom in, up to zoom out.
+function enableQuickZoom(map) {
+  const el = map.getContainer();
+  if (!("ontouchstart" in window)) return; // desktop keeps normal double-click zoom
+  map.doubleClickZoom.disable();
+  const TAP_MS = 300, TAP_PX = 40, MOVE_PX = 8, PX_PER_ZOOM = 120;
+  let lastTap = null, tapStart = null, qz = null;
+  const pt = (t) => { const r = el.getBoundingClientRect(); return L.point(t.clientX - r.left, t.clientY - r.top); };
+  const onPin = (e) => e.target.closest && e.target.closest(".leaflet-marker-icon");
+  const opts = { capture: true, passive: false };
+
+  el.addEventListener("touchstart", (e) => {
+    if (e.touches.length !== 1 || onPin(e)) { lastTap = tapStart = qz = null; return; }
+    const p = pt(e.touches[0]), now = Date.now();
+    if (lastTap && now - lastTap.t < TAP_MS && p.distanceTo(lastTap.p) < TAP_PX) {
+      e.preventDefault(); e.stopPropagation(); // keep Leaflet from treating this as a drag
+      map.stop();
+      qz = { y0: p.y, z0: map.getZoom(), p, moved: false };
+      lastTap = null;
+      return;
+    }
+    tapStart = { t: now, p };
+  }, opts);
+
+  el.addEventListener("touchmove", (e) => {
+    if (!qz) {
+      if (tapStart && (e.touches.length !== 1 || pt(e.touches[0]).distanceTo(tapStart.p) > MOVE_PX)) tapStart = null;
+      return;
+    }
+    e.preventDefault(); e.stopPropagation();
+    if (e.touches.length !== 1) return;
+    const dy = pt(e.touches[0]).y - qz.y0;
+    if (Math.abs(dy) > MOVE_PX) qz.moved = true;
+    if (!qz.moved) return;
+    const z = Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), qz.z0 + dy / PX_PER_ZOOM));
+    map.setZoomAround(qz.p, z, { animate: false });
+  }, opts);
+
+  el.addEventListener("touchend", (e) => {
+    if (qz) {
+      e.preventDefault(); e.stopPropagation();
+      if (!qz.moved) map.setZoomAround(qz.p, Math.min(map.getMaxZoom(), Math.round(map.getZoom()) + 1));
+      qz = null;
+      return;
+    }
+    lastTap = tapStart && Date.now() - tapStart.t < 250 ? { t: Date.now(), p: tapStart.p } : null;
+    tapStart = null;
+  }, opts);
+
+  el.addEventListener("touchcancel", () => { qz = tapStart = lastTap = null; }, { capture: true });
+}
+
 async function init() {
   const mode = IS_IOS ? "iPhone app links" : IS_ANDROID ? "Android app links" : "website links";
   $("updated").textContent = `${VERSION} · ${mode} · Updated ${LAST_UPDATED}`;
-  map = L.map("map", { zoomControl: false, attributionControl: false, tap: true }).setView([22.53, 113.95], 13);
+  map = L.map("map", { zoomControl: false, attributionControl: false, zoomSnap: 0, zoomDelta: 1 }).setView([22.53, 113.95], 13);
+  enableQuickZoom(map);
   setTiles();
   try {
     const res = await fetch("data/places.json", { cache: "no-cache" });
@@ -276,7 +342,7 @@ async function init() {
   }
   buildFilters();
   renderMarkers();
-  fitAll();
+  fitAll(false);
 
   map.on("click", closeSheet);
   $("s-close").onclick = closeSheet;
@@ -284,8 +350,11 @@ async function init() {
   $("btn-list").onclick = () => ($("list").hidden ? openList() : closeList());
   $("l-close").onclick = closeList;
   $("btn-fit").onclick = () => { closeSheet(); fitAll(); };
-  $("btn-locate").onclick = toggleLocate;
+  $("btn-locate").onclick = () => toggleLocate(false);
   $("btn-labels").onclick = () => { labelLang = labelLang === "en" ? "zh" : "en"; store.set("sz-labels", labelLang); setTiles(); };
+
+  // Start location automatically unless you last switched it off.
+  if ("geolocation" in navigator && store.get("sz-loc", "on") !== "off") toggleLocate(true);
 }
 
 init();
