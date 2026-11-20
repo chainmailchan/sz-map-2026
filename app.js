@@ -1,6 +1,6 @@
 // Shenzhen map — Leaflet on Amap tiles. All coordinates are GCJ-02 (Amap's system).
 const LAST_UPDATED = "20 Nov 2026";
-const VERSION = "v6";
+const VERSION = "v7";
 
 const TILES = {
   en: { url: "https://wprd0{s}.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=en&size=1&scl=1&style=7", label: "Labels: English" },
@@ -327,7 +327,21 @@ function enableQuickZoom(map) {
   el.addEventListener("touchcancel", () => { qz = tapStart = lastTap = null; }, { capture: true });
 }
 
+// ---- Self-update ----
+// The home-screen app can keep an old copy of the page. On open (and when brought back to the
+// front) check version.json without cache; if it's newer, reload under a new URL so nothing old is reused.
+async function checkForUpdate() {
+  try {
+    const r = await fetch(`version.json?t=${Date.now()}`, { cache: "no-store" });
+    const { version } = await r.json();
+    const already = new URLSearchParams(location.search).get("u") === version;
+    if (version && version !== VERSION && !already) location.replace(`${location.pathname}?u=${encodeURIComponent(version)}`);
+  } catch {}
+}
+
 async function init() {
+  checkForUpdate();
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) checkForUpdate(); });
   const mode = IS_IOS ? "iPhone app links" : IS_ANDROID ? "Android app links" : "website links";
   $("updated").textContent = `${VERSION} · ${mode} · Updated ${LAST_UPDATED}`;
   map = L.map("map", { zoomControl: false, attributionControl: false, zoomSnap: 0, zoomDelta: 1 }).setView([22.53, 113.95], 13);
