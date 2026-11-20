@@ -230,6 +230,17 @@
       "note": "APPROXIMATE: pin is on the MixC mall pin, not the restaurant itself — exact spot not mapped yet. Jiangsu-Zhejiang; crab roe dishes. About ¥121 per person (Amap).",
       "amap_short": "https://surl.amap.com/1rd34wG2I6Iq",
       "source": "Chan's Amap share (name, price, address); position: MixC mall pin"
+    },
+    {
+      "id": "taizhenhui-mixc",
+      "name": "Taizhenhui (Thai) · MixC",
+      "category": "food",
+      "address_zh": "南山区科苑南路2888号深圳湾万象城F3 L301",
+      "lat": 22.5165155,
+      "lng": 113.9461757,
+      "note": "APPROXIMATE: pin is on the MixC mall pin — the restaurant is on F3, shop L301. Thai. About ¥188 per person (Amap).",
+      "amap_short": "https://surl.amap.com/2pU2cFjs172zv",
+      "source": "Chan's Amap share (name, price, address); position: MixC mall pin"
     }
   ]
 }
