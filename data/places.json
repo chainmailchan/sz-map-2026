@@ -195,66 +195,6 @@
       "lat": 22.517108,
       "lng": 113.925189,
       "source": "Google place search (position not checked on Amap map)"
-    },
-    {
-      "id": "cs-111-dengliang",
-      "name": "Convenience store (111) · 登良路",
-      "category": "store",
-      "address": "Dengliang Rd (登良路)",
-      "lat": 22.509792,
-      "lng": 113.931495,
-      "phone": "0755-26522119",
-      "note": "Listed on Google as 'One Hundred and Eleven Convenience Store'. Hours (Google): 08:30–21:00.",
-      "source": "Google place search (position not checked on Amap map)"
-    },
-    {
-      "id": "cs-chengjie",
-      "name": "成杰便利店",
-      "category": "store",
-      "address_zh": "登良路",
-      "lat": 22.509957,
-      "lng": 113.930048,
-      "source": "Google place search (position not checked on Amap map)"
-    },
-    {
-      "id": "cs-rongfa",
-      "name": "Rongfa Convenience",
-      "category": "store",
-      "address": "1 Longcheng Rd (龙城路1号)",
-      "lat": 22.5119962,
-      "lng": 113.9341376,
-      "phone": "0755-26479948",
-      "source": "Google place search (position not checked on Amap map)"
-    },
-    {
-      "id": "cs-wanshoptong",
-      "name": "24h Convenience · 登良路",
-      "category": "store",
-      "address": "Dengliang Rd (登良路)",
-      "lat": 22.5103645,
-      "lng": 113.9268482,
-      "phone": "0755-26471459",
-      "note": "Listed on Google as 'Wan Shop Tong 24 hours Convenience Store' (24-hour per its name).",
-      "source": "Google place search (position not checked on Amap map)"
-    },
-    {
-      "id": "cs-hk",
-      "name": "HK Convenience Store",
-      "category": "store",
-      "address": "Longcheng Rd (龙城路)",
-      "lat": 22.513112,
-      "lng": 113.936695,
-      "phone": "0755-86691333",
-      "source": "Google place search (position not checked on Amap map)"
-    },
-    {
-      "id": "cs-longcheng-living",
-      "name": "Longcheng Living Supermarket",
-      "category": "store",
-      "address": "82 Nanshang Rd area (南商路82号)",
-      "lat": 22.512757,
-      "lng": 113.929376,
-      "source": "Google place search (position not checked on Amap map)"
     }
   ]
 }
