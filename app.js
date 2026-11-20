@@ -1,6 +1,6 @@
 // Shenzhen map — Leaflet on Amap tiles. All coordinates are GCJ-02 (Amap's system).
 const LAST_UPDATED = "20 Nov 2026";
-const VERSION = "v7";
+const VERSION = "v8";
 
 const TILES = {
   en: { url: "https://wprd0{s}.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=en&size=1&scl=1&style=7", label: "Labels: English" },
@@ -172,7 +172,7 @@ function openSheet(id) {
     if (h) bits.push(`${fmtDist(distanceM([h.lat, h.lng], [p.lat, p.lng]))} from hotel (straight line)`);
   }
   $("s-meta").textContent = bits.join(" · ");
-  $("s-addr").textContent = p.address_zh || "";
+  $("s-addr").textContent = p.address_zh || p.address || "";
   $("s-note").textContent = p.note || "";
   const amap = $("s-amap"), dir = $("s-dir");
   amap.href = amapMarkerUrl(p); dir.href = amapDirUrl(p);
@@ -359,6 +359,9 @@ async function init() {
   fitAll(false);
 
   map.on("click", closeSheet);
+  // Convenience-store labels only when zoomed in, so the area round the hotel stays readable.
+  const labelZoom = () => map.getContainer().classList.toggle("zoom-low", map.getZoom() < 15.5);
+  map.on("zoomend", labelZoom); labelZoom();
   $("s-close").onclick = closeSheet;
   $("s-copy").onclick = copyAddress;
   $("btn-list").onclick = () => ($("list").hidden ? openList() : closeList());

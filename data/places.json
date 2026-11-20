@@ -16,6 +16,10 @@
     {
       "id": "shop",
       "label": "Shopping"
+    },
+    {
+      "id": "store",
+      "label": "Convenience"
     }
   ],
   "places": [
@@ -60,10 +64,197 @@
       "name_zh": "深圳湾万象城",
       "category": "shop",
       "address_zh": "深圳市南山区粤海街道海珠社区科苑南路2888号",
-      "note": "Hours: Sun–Thu 10:00–22:00, Fri–Sat 10:00–22:30. Phase 2 opened Sept 2025. Nearest metro: Houhai (后海).",
+      "note": "Hours: Sun–Thu 10:00–22:00, Fri–Sat 10:00–22:30. Phase 2 opened Sept 2025. Nearest metro: Houhai (后海). Ole supermarket is inside (phase 2, Zone C) — exact spot not on the map yet.",
       "lat": 22.5165155,
       "lng": 113.9461757,
       "source": "Coordinates: Google place search, checked against Amap map. Address and hours: bendibao.com"
+    },
+    {
+      "id": "mcd-wenxin5",
+      "name": "McDonald's · 文心五路",
+      "name_zh": "麦当劳",
+      "category": "food",
+      "address": "33 Wenxin 5th Rd, Houhai (文心五路33号)",
+      "lat": 22.517653,
+      "lng": 113.936221,
+      "phone": "0755-86359603",
+      "note": "Filet-O-Fish is 麦香鱼. Pay by Alipay.",
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "mcd-nanhai2748",
+      "name": "McDonald's · 南海大道",
+      "name_zh": "麦当劳",
+      "category": "food",
+      "address": "2748 Nanhai Ave (南海大道2748号)",
+      "lat": 22.5195152,
+      "lng": 113.929505,
+      "phone": "0755-86122069",
+      "note": "Hours (Google): 09:00–23:00 daily. Filet-O-Fish is 麦香鱼.",
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "mcd-nanhai2088",
+      "name": "McDonald's · 南海大道南",
+      "name_zh": "麦当劳",
+      "category": "food",
+      "address": "2088 Nanhai Ave (南海大道2088号)",
+      "lat": 22.505806,
+      "lng": 113.924558,
+      "phone": "0755-26673160",
+      "note": "Filet-O-Fish is 麦香鱼.",
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "mcd-gongye8",
+      "name": "McDonald's · 工业八路",
+      "name_zh": "麦当劳",
+      "category": "food",
+      "address": "Gongye 8th Rd (工业八路)",
+      "lat": 22.500758,
+      "lng": 113.938358,
+      "note": "Filet-O-Fish is 麦香鱼.",
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "711-longcheng",
+      "name": "7-Eleven · 龙城路",
+      "name_zh": "7-11便利店",
+      "category": "store",
+      "address_zh": "龙城路1号",
+      "lat": 22.512706,
+      "lng": 113.931846,
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "711-dengliang",
+      "name": "7-Eleven · 登良路",
+      "name_zh": "7-11便利店 (NO.755)",
+      "category": "store",
+      "address_zh": "登良路7-22",
+      "lat": 22.5098316,
+      "lng": 113.9349171,
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "711-wenxin2",
+      "name": "7-Eleven · 文心二路",
+      "name_zh": "7-11便利店",
+      "category": "store",
+      "address": "22 Wenxin 2nd Rd (文心二路22号)",
+      "lat": 22.5160977,
+      "lng": 113.9301539,
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "711-wenxin1",
+      "name": "7-Eleven · 文心一路",
+      "name_zh": "7-11便利店",
+      "category": "store",
+      "address": "118 Wenxin 1st Rd (文心一路118号)",
+      "lat": 22.517976,
+      "lng": 113.929658,
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "711-houhai",
+      "name": "7-Eleven · 后海",
+      "name_zh": "7-11便利店",
+      "category": "store",
+      "address": "Houhai (plus code GW8P+R9Q)",
+      "lat": 22.517096,
+      "lng": 113.935999,
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "711-haide3",
+      "name": "7-Eleven · 海德三道",
+      "name_zh": "7-11便利店",
+      "category": "store",
+      "address": "214 Haide 3rd Rd (海德三道214号)",
+      "lat": 22.5201593,
+      "lng": 113.9320593,
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "711-haide2",
+      "name": "7-Eleven · 海德二道",
+      "name_zh": "7-11便利店",
+      "category": "store",
+      "address": "326 Haide 2nd Rd (海德二道326号)",
+      "lat": 22.5198892,
+      "lng": 113.9273547,
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "711-nanguang",
+      "name": "7-Eleven · 南光路",
+      "name_zh": "7-11便利店",
+      "category": "store",
+      "address_zh": "南光路17号-4",
+      "lat": 22.517108,
+      "lng": 113.925189,
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "cs-111-dengliang",
+      "name": "Convenience store (111) · 登良路",
+      "category": "store",
+      "address": "Dengliang Rd (登良路)",
+      "lat": 22.509792,
+      "lng": 113.931495,
+      "phone": "0755-26522119",
+      "note": "Listed on Google as 'One Hundred and Eleven Convenience Store'. Hours (Google): 08:30–21:00.",
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "cs-chengjie",
+      "name": "成杰便利店",
+      "category": "store",
+      "address_zh": "登良路",
+      "lat": 22.509957,
+      "lng": 113.930048,
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "cs-rongfa",
+      "name": "Rongfa Convenience",
+      "category": "store",
+      "address": "1 Longcheng Rd (龙城路1号)",
+      "lat": 22.5119962,
+      "lng": 113.9341376,
+      "phone": "0755-26479948",
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "cs-wanshoptong",
+      "name": "24h Convenience · 登良路",
+      "category": "store",
+      "address": "Dengliang Rd (登良路)",
+      "lat": 22.5103645,
+      "lng": 113.9268482,
+      "phone": "0755-26471459",
+      "note": "Listed on Google as 'Wan Shop Tong 24 hours Convenience Store' (24-hour per its name).",
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "cs-hk",
+      "name": "HK Convenience Store",
+      "category": "store",
+      "address": "Longcheng Rd (龙城路)",
+      "lat": 22.513112,
+      "lng": 113.936695,
+      "phone": "0755-86691333",
+      "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "cs-longcheng-living",
+      "name": "Longcheng Living Supermarket",
+      "category": "store",
+      "address": "82 Nanshang Rd area (南商路82号)",
+      "lat": 22.512757,
+      "lng": 113.929376,
+      "source": "Google place search (position not checked on Amap map)"
     }
   ]
 }

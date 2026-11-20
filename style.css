@@ -8,6 +8,7 @@
   --sight: #1d5fd1;
   --food: #e46b12;
   --shop: #7a3db8;
+  --store: #1f8a4c;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
@@ -125,10 +126,13 @@ h2 { font-size: 20px; margin: 0; }
 .cat-sight .pin-dot { background: var(--sight); }
 .cat-food .pin-dot { background: var(--food); }
 .cat-shop .pin-dot { background: var(--shop); }
+.cat-store .pin-dot { background: var(--store); width: 14px; height: 14px; left: -7px; top: -7px; }
 .cat-hotel .pin-label { color: var(--hotel); }
 .cat-sight .pin-label { color: var(--sight); }
 .cat-food .pin-label { color: var(--food); }
 .cat-shop .pin-label { color: var(--shop); }
+.cat-store .pin-label { color: var(--store); }
+.zoom-low .cat-store .pin-label { display: none; }
 .pin.active .pin-label { background: var(--ink); color: #fff; border-color: var(--ink); }
 
 .me-dot {
@@ -138,3 +142,5 @@ h2 { font-size: 20px; margin: 0; }
 
 .leaflet-container { font: inherit; }
 .leaflet-control-zoom a { width: 44px !important; height: 44px !important; line-height: 44px !important; font-size: 24px !important; }
+
+[hidden] { display: none !important; }
