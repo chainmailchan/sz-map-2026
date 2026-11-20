@@ -195,6 +195,18 @@
       "lat": 22.517108,
       "lng": 113.925189,
       "source": "Google place search (position not checked on Amap map)"
+    },
+    {
+      "id": "lawson-yude",
+      "name": "Lawson · 育德佳园",
+      "name_zh": "罗森 (育德佳园店)",
+      "category": "store",
+      "address_zh": "后海大道育德佳园2栋 粤琴一路23-38、23-37",
+      "lat": 22.51197,
+      "lng": 113.93271,
+      "note": "Position from Google's listing for the shop at 粤琴一路23-38 (listed under its old name, 天虹微喔, a chain Lawson bought). Not checked on Amap's map.",
+      "amap_short": "https://surl.amap.com/2kb1gzGOVgtf",
+      "source": "Chan's Amap share (name, address); position: Google place search, same unit number"
     }
   ]
 }
