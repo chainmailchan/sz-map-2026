@@ -241,6 +241,46 @@
       "note": "APPROXIMATE: pin is on the MixC mall pin — the restaurant is on F3, shop L301. Thai. About ¥188 per person (Amap).",
       "amap_short": "https://surl.amap.com/2pU2cFjs172zv",
       "source": "Chan's Amap share (name, price, address); position: MixC mall pin"
+    },
+    {
+      "id": "huisong-jingtian",
+      "name": "景田惠松满庭汤粉",
+      "category": "food",
+      "address_zh": "福田区景田路景田综合市场A栋A31",
+      "lat": 22.5492323,
+      "lng": 114.045726,
+      "note": "Teochew soup noodles; meat sliced to order, bone broth made daily; open since 1996. APPROXIMATE: pin is on Jingtian market, stall A31 is inside. ~550 m from Jingtian stn exit B (Lines 2/9). Hours not confirmed — market stalls may close mid-afternoon.",
+      "source": "HK01 (updated Sep 2025); position: Google (Jingtian market)"
+    },
+    {
+      "id": "linxinmei-jingtian",
+      "name": "林新美潮汕汤粉店",
+      "category": "food",
+      "address_zh": "福田区景田路68号景田综合市场B栋B18",
+      "lat": 22.5492323,
+      "lng": 114.045726,
+      "note": "Teochew soup noodles, many sauces, 5 noodle types; ¥15–40 (about ¥20 is filling). APPROXIMATE: pin is on Jingtian market, stall B18 is inside. ~710 m from Lianhua West stn exit A (Line 2). Hours not confirmed.",
+      "source": "HK01 (updated Sep 2025); position: Google (Jingtian market)"
+    },
+    {
+      "id": "xiaolong-beef-noodle",
+      "name": "小龙牛肉面 (Michelin Bib)",
+      "category": "food",
+      "address_zh": "福田区梅华路百兴苑一栋48-8底商",
+      "lat": 22.5650616,
+      "lng": 114.0569153,
+      "note": "Michelin Bib Gourmand 2026. Red-braised beef noodles, beef offal noodles (~¥30), red-oil wontons. APPROXIMATE: pin is on the 百兴苑 building, not the shopfront. Hours not confirmed.",
+      "source": "Sing Tao (Bib Gourmand list, Aug 2026); position: Google (百兴苑)"
+    },
+    {
+      "id": "shunshun-tianfa",
+      "name": "顺顺甜发 (Teochew desserts)",
+      "category": "food",
+      "address_zh": "福田区梅林街道中康南8号雕塑家园105铺",
+      "lat": 22.563118,
+      "lng": 114.059542,
+      "note": "Teochew sweet soups and hand-made fried ice. ~430 m from Lianhua North stn exit A1 (Lines 4/9). APPROXIMATE: pin is the estate's west gate. Hours not confirmed.",
+      "source": "HK01 (2026); position: Google (雕塑家园 west gate)"
     }
   ]
 }
